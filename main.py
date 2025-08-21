@@ -28,9 +28,9 @@ def compare(guess, answer):
     
     return [(guess[i], result[i]) for i in range(len(guess))]
 
-def get_remaining_possible_answers(comparison):
+def get_remaining_possible_answers(comparison, answers_universe=ANSWERS):
     remaining = []
-    for answer in ANSWERS:
+    for answer in answers_universe:
         valid = True
         for i, (char, result) in enumerate(comparison):
             if result == 2 and answer[i] != char:
@@ -46,23 +46,24 @@ def get_remaining_possible_answers(comparison):
             remaining.append(answer)
     return remaining
 
-with open("results.txt", "w") as file:
-    i = 0
-    for guess in GUESSES:
-        if i % 10 == 0:
-            print(f"[{datetime.datetime.now()}] Processing guess {i}: {guess}")
-        sum_of_remaining_answers = 0
-        
-        for answer in ANSWERS:
-            comparison = compare(guess, answer)
-            number_of_remaining_answers = len(get_remaining_possible_answers(comparison))
-            sum_of_remaining_answers += number_of_remaining_answers
-        average_remaining_answers = sum_of_remaining_answers / (NUMBER_OF_ANSWERS ** 2)
-        
-        if average_remaining_answers < 0.03:
-            print(f"Great word found: {guess} ({average_remaining_answers:.4f})")
-        if average_remaining_answers > 0.2:
-            print(f"Terrible word found: {guess} ({average_remaining_answers:.4f})")
-        
-        file.write(f"{guess}: {average_remaining_answers}\n")
-        i += 1
+if __name__ == "__main__":
+    with open("results.txt", "w") as file:
+        i = 0
+        for guess in GUESSES:
+            if i % 10 == 0:
+                print(f"[{datetime.datetime.now()}] Processing guess {i}: {guess}")
+            sum_of_remaining_answers = 0
+            
+            for answer in ANSWERS:
+                comparison = compare(guess, answer)
+                number_of_remaining_answers = len(get_remaining_possible_answers(comparison))
+                sum_of_remaining_answers += number_of_remaining_answers
+            average_remaining_answers = sum_of_remaining_answers / (NUMBER_OF_ANSWERS ** 2)
+            
+            if average_remaining_answers < 0.03:
+                print(f"Great word found: {guess} ({average_remaining_answers:.4f})")
+            if average_remaining_answers > 0.2:
+                print(f"Terrible word found: {guess} ({average_remaining_answers:.4f})")
+            
+            file.write(f"{guess}: {average_remaining_answers}\n")
+            i += 1
