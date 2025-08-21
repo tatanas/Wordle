@@ -47,11 +47,11 @@ def get_remaining_possible_answers(comparison):
     
     return remaining    
 
-with open("results_1000_2000.txt", "w") as file:
+with open("results_2000_5000.txt", "w") as file:
     i = 0
-    for guess in GUESSES[1000:2000]:
+    for guess in GUESSES[2000:5000]:
         if i % 10 == 0:
-            print(f"[{datetime.datetime.now()}] Processing guess {i}/1000: {guess}")
+            print(f"[{datetime.datetime.now()}] Processing guess {i}/3000: {guess}")
         sum_of_remaining_answers = 0
         
         for answer in ANSWERS:
