@@ -1,3 +1,4 @@
+ANSWER: rusty
 aback: (1.0, 1, 1)
 abase: (1.0, 1, 1)
 abate: (1.0, 1, 1)
@@ -1629,7 +1630,6 @@ rumba: (1.0, 1, 1)
 rumor: (1.0, 1, 1)
 rupee: (1.0, 1, 1)
 rural: (1.0, 1, 1)
-rusty: (1.0, 1, 1)
 sadly: (1.0, 1, 1)
 safer: (1.0, 1, 1)
 saint: (1.0, 1, 1)

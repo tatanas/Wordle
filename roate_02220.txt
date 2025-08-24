@@ -1,3 +1,4 @@
+ANSWER: loath
 aback: (1.0, 1, 1)
 abase: (1.0, 1, 1)
 abate: (1.0, 1, 1)
@@ -1142,7 +1143,6 @@ liver: (1.0, 1, 1)
 livid: (1.0, 1, 1)
 llama: (1.0, 1, 1)
 loamy: (1.0, 1, 1)
-loath: (1.0, 1, 1)
 lobby: (1.0, 1, 1)
 local: (1.0, 1, 1)
 locus: (1.0, 1, 1)

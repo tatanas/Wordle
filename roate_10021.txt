@@ -1,3 +1,4 @@
+ANSWER: berth
 aback: (1.0, 1, 1)
 abase: (1.0, 1, 1)
 abate: (1.0, 1, 1)
@@ -184,7 +185,6 @@ below: (1.0, 1, 1)
 bench: (1.0, 1, 1)
 beret: (1.0, 1, 1)
 berry: (1.0, 1, 1)
-berth: (1.0, 1, 1)
 beset: (1.0, 1, 1)
 betel: (1.0, 1, 1)
 bevel: (1.0, 1, 1)

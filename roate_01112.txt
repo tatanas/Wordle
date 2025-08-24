@@ -1,3 +1,4 @@
+ANSWER: atone
 aback: (1.0, 1, 1)
 abase: (1.0, 1, 1)
 abate: (1.0, 1, 1)
@@ -118,7 +119,6 @@ askew: (1.0, 1, 1)
 assay: (1.0, 1, 1)
 asset: (1.0, 1, 1)
 atoll: (1.0, 1, 1)
-atone: (1.0, 1, 1)
 attic: (1.0, 1, 1)
 audio: (1.0, 1, 1)
 audit: (1.0, 1, 1)

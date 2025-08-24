@@ -1,3 +1,4 @@
+ANSWER: royal
 aback: (1.0, 1, 1)
 abase: (1.0, 1, 1)
 abate: (1.0, 1, 1)
@@ -1620,7 +1621,6 @@ route: (1.0, 1, 1)
 rover: (1.0, 1, 1)
 rowdy: (1.0, 1, 1)
 rower: (1.0, 1, 1)
-royal: (1.0, 1, 1)
 ruddy: (1.0, 1, 1)
 ruder: (1.0, 1, 1)
 rugby: (1.0, 1, 1)

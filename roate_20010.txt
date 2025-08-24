@@ -1,3 +1,4 @@
+ANSWER: right
 aback: (1.0, 1, 1)
 abase: (1.0, 1, 1)
 abate: (1.0, 1, 1)
@@ -1589,7 +1590,6 @@ rhyme: (1.0, 1, 1)
 rider: (1.0, 1, 1)
 ridge: (1.0, 1, 1)
 rifle: (1.0, 1, 1)
-right: (1.0, 1, 1)
 rigid: (1.0, 1, 1)
 rigor: (1.0, 1, 1)
 rinse: (1.0, 1, 1)

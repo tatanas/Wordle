@@ -1,3 +1,4 @@
+ANSWER: earth
 aback: (1.0, 1, 1)
 abase: (1.0, 1, 1)
 abate: (1.0, 1, 1)
@@ -624,7 +625,6 @@ dying: (1.0, 1, 1)
 eager: (1.0, 1, 1)
 eagle: (1.0, 1, 1)
 early: (1.0, 1, 1)
-earth: (1.0, 1, 1)
 easel: (1.0, 1, 1)
 eaten: (1.0, 1, 1)
 eater: (1.0, 1, 1)

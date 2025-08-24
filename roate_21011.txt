@@ -1,3 +1,4 @@
+ANSWER: retro
 aback: (1.0, 1, 1)
 abase: (1.0, 1, 1)
 abate: (1.0, 1, 1)
@@ -1579,7 +1580,6 @@ rerun: (1.0, 1, 1)
 reset: (1.0, 1, 1)
 resin: (1.0, 1, 1)
 retch: (1.0, 1, 1)
-retro: (1.0, 1, 1)
 retry: (1.0, 1, 1)
 reuse: (1.0, 1, 1)
 revel: (1.0, 1, 1)

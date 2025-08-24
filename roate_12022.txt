@@ -1,3 +1,4 @@
+ANSWER: forte
 aback: (1.0, 1, 1)
 abase: (1.0, 1, 1)
 abate: (1.0, 1, 1)
@@ -792,7 +793,6 @@ foray: (1.0, 1, 1)
 force: (1.0, 1, 1)
 forge: (1.0, 1, 1)
 forgo: (1.0, 1, 1)
-forte: (1.0, 1, 1)
 forth: (1.0, 1, 1)
 forty: (1.0, 1, 1)
 forum: (1.0, 1, 1)

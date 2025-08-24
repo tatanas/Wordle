@@ -1,3 +1,4 @@
+ANSWER: opera
 aback: (1.0, 1, 1)
 abase: (1.0, 1, 1)
 abate: (1.0, 1, 1)
@@ -1337,7 +1338,6 @@ ombre: (1.0, 1, 1)
 omega: (1.0, 1, 1)
 onion: (1.0, 1, 1)
 onset: (1.0, 1, 1)
-opera: (1.0, 1, 1)
 opine: (1.0, 1, 1)
 opium: (1.0, 1, 1)
 optic: (1.0, 1, 1)

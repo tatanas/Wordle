@@ -1,3 +1,4 @@
+ANSWER: ovate
 aback: (1.0, 1, 1)
 abase: (1.0, 1, 1)
 abate: (1.0, 1, 1)
@@ -1352,7 +1353,6 @@ outdo: (1.0, 1, 1)
 outer: (1.0, 1, 1)
 outgo: (1.0, 1, 1)
 ovary: (1.0, 1, 1)
-ovate: (1.0, 1, 1)
 overt: (1.0, 1, 1)
 ovine: (1.0, 1, 1)
 ovoid: (1.0, 1, 1)

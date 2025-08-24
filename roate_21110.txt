@@ -1,3 +1,4 @@
+ANSWER: ratio
 aback: (1.0, 1, 1)
 abase: (1.0, 1, 1)
 abate: (1.0, 1, 1)
@@ -1543,7 +1544,6 @@ range: (1.0, 1, 1)
 rapid: (1.0, 1, 1)
 rarer: (1.0, 1, 1)
 raspy: (1.0, 1, 1)
-ratio: (1.0, 1, 1)
 ratty: (1.0, 1, 1)
 raven: (1.0, 1, 1)
 rayon: (1.0, 1, 1)

@@ -1,3 +1,4 @@
+ANSWER: roach
 aback: (1.0, 1, 1)
 abase: (1.0, 1, 1)
 abate: (1.0, 1, 1)
@@ -1601,7 +1602,6 @@ risky: (1.0, 1, 1)
 rival: (1.0, 1, 1)
 river: (1.0, 1, 1)
 rivet: (1.0, 1, 1)
-roach: (1.0, 1, 1)
 roast: (1.0, 1, 1)
 robin: (1.0, 1, 1)
 robot: (1.0, 1, 1)

@@ -1,3 +1,4 @@
+ANSWER: wrote
 aback: (1.0, 1, 1)
 abase: (1.0, 1, 1)
 abate: (1.0, 1, 1)
@@ -2301,7 +2302,6 @@ wring: (1.0, 1, 1)
 wrist: (1.0, 1, 1)
 write: (1.0, 1, 1)
 wrong: (1.0, 1, 1)
-wrote: (1.0, 1, 1)
 wrung: (1.0, 1, 1)
 wryly: (1.0, 1, 1)
 yacht: (1.0, 1, 1)

@@ -1,3 +1,4 @@
+ANSWER: wrath
 aback: (1.0, 1, 1)
 abase: (1.0, 1, 1)
 abate: (1.0, 1, 1)
@@ -2293,7 +2294,6 @@ would: (1.0, 1, 1)
 wound: (1.0, 1, 1)
 woven: (1.0, 1, 1)
 wrack: (1.0, 1, 1)
-wrath: (1.0, 1, 1)
 wreak: (1.0, 1, 1)
 wreck: (1.0, 1, 1)
 wrest: (1.0, 1, 1)

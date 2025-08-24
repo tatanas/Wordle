@@ -1,3 +1,4 @@
+ANSWER: route
 aback: (1.0, 1, 1)
 abase: (1.0, 1, 1)
 abate: (1.0, 1, 1)
@@ -1616,7 +1617,6 @@ rouge: (1.0, 1, 1)
 rough: (1.0, 1, 1)
 round: (1.0, 1, 1)
 rouse: (1.0, 1, 1)
-route: (1.0, 1, 1)
 rover: (1.0, 1, 1)
 rowdy: (1.0, 1, 1)
 rower: (1.0, 1, 1)
