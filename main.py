@@ -8,7 +8,9 @@ def get_best_guess(remaining_answers):
             comparison = compare(guess, answer)
             remaining = len(get_remaining_possible_answers(comparison, remaining_answers))
             values[guess].append(remaining)
-        values[guess] = sum(values[guess]) / len(values[guess])
+        # values[guess] = sum(values[guess]) / len(values[guess])
+        # choosing now through best worst case scenario
+        values[guess] = max(values[guess])
 
     for guess in values.copy():
         if guess not in remaining_answers and values[guess] < 1.1:
