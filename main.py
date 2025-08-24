@@ -1,90 +1,48 @@
-import datetime
+from first_guess import compare, ANSWERS, GUESSES, get_remaining_possible_answers
+from collections import defaultdict
 
-ANSWERS = [line.strip() for line in open("answers.txt")]
-GUESSES = [line.strip() for line in open("guesses.txt")]
-NUMBER_OF_ANSWERS = len(ANSWERS)
+def get_best_guess(remaining_answers):
+    values = defaultdict(list)
+    for i, guess in enumerate(GUESSES):
+        for answer in remaining_answers:
+            comparison = compare(guess, answer)
+            remaining = len(get_remaining_possible_answers(comparison, remaining_answers))
+            values[guess].append(remaining)
+        values[guess] = sum(values[guess]) / len(values[guess])
 
-def compare(guess, answer):
-    result = [0, 0, 0, 0, 0]
-    used = [False, False, False, False, False]
+    for guess in values.copy():
+        if guess not in remaining_answers and values[guess] < 1.1:
+            del values[guess]        
+    best_guess = min(values, key=values.get)
 
-    for i in range(len(guess)):
-        if guess[i] == answer[i]:
-            result[i] = 2
-            used[i] = True
+    return best_guess, values[best_guess]
 
-    for i in range(len(guess)):
-        if result[i] == 0 and guess[i] in answer:
-            index_in_answer = answer.index(guess[i])
-            while used[index_in_answer]:
-                index_in_answer = answer.find(guess[i], index_in_answer + 1)
-                if index_in_answer == -1:
-                    break
-            
-            if index_in_answer != -1:
-                result[i] = 1
-                used[index_in_answer] = True
-    
-    return [(guess[i], result[i]) for i in range(len(guess))]
-
-def is_winning_guess(comparison):
-    return all(result == 2 for _, result in comparison)
-
-def get_remaining_possible_answers(comparison, answers_universe=ANSWERS):
-    remaining = []
-    done = False
-    for answer in answers_universe:
-        valid = True
-        for i, (char, result) in enumerate(comparison):
-            # si la comparación indica que una letra está correctamente situada pero no calza con esta solución, la sacamos
-            if result == 2 and answer[i] != char:
-                valid = False
-                if i == 0:
-                    # check if answer starts with a letter that comes after guess
-                    if answer[0] > char:
-                        done = True
-                break
-            if result == 0:
-                if answer[i] == char:
-                    valid = False
-                    break
-                if char in answer and not any(c == char and r != 0 for c, r in comparison):
-                    valid = False
-                    break
-            if result == 1:
-                if char not in answer:
-                    valid = False
-                    break
-                if answer[i] == char:
-                    valid = False
-                    break
-        if valid:
-            remaining.append(answer)
-        if done:
+while True:
+    remaining_answers = ANSWERS
+    guess = "roate"
+    for i in range(6):
+        output = input(f"[{i + 1}] Enter your output after playing {guess}: ")
+        if output == "": 
+            print() 
             break
-    return remaining
 
-if __name__ == "__main__":
-    with open("results.txt", "w") as file:
-        i = 0
-        for guess in GUESSES:
-            if i % 20 == 0:
-                print(f"[{datetime.datetime.now()}] Processing guess {i}: {guess}")
-            sum_of_remaining_answers = 0
-            
-            for answer in ANSWERS:
-                comparison = compare(guess, answer)
-                if is_winning_guess(comparison):
-                    number_of_remaining_answers = 1
-                else:
-                    number_of_remaining_answers = len(get_remaining_possible_answers(comparison))
-                sum_of_remaining_answers += number_of_remaining_answers
-            average_remaining_answers = sum_of_remaining_answers / (NUMBER_OF_ANSWERS ** 2)
-            
-            if average_remaining_answers < 0.03:
-                print(f"--> Great word found: {guess} ({average_remaining_answers:.4f})")
-            elif average_remaining_answers > 0.2:
-                print(f"--> Terrible word found: {guess} ({average_remaining_answers:.4f})")
-
-            file.write(f"{guess}: {average_remaining_answers}\n")
-            i += 1
+        comparison = [(a, int(b)) for a,b in zip(guess, output)]
+        remaining_answers = get_remaining_possible_answers(comparison, remaining_answers)
+        print(f"Remaining answers: {len(remaining_answers)} {(remaining_answers if len(remaining_answers) <= 10 else "")}")
+        if guess == "roate" and i == 0:
+            # fetch the best answer from the files
+            filename = f"roate_{output}.txt"
+            with open(filename) as f:
+                result = f.readline()
+                print(f"Your next best guess is: {result}")
+                guess = result.split(":")[0]
+        else:
+            # if there's one remaining answer, do that one. if there's two, do either (choosing the first one for convenience).
+            if len(remaining_answers) <= 2:
+                best_guess, average = remaining_answers[0], 1.0
+                print(f"Your next best guess is {best_guess} ({average})\n")
+                break                
+            else:
+                best_guess, average = get_best_guess(remaining_answers)
+                print(f"Your next best guess is {best_guess} ({average})\n")
+            guess = best_guess

@@ -1,4 +1,4 @@
-from main import GUESSES, ANSWERS, compare, get_remaining_possible_answers
+from first_guess import GUESSES, ANSWERS, compare, get_remaining_possible_answers
 from collections import defaultdict
 
 BEST_WORD = "roate"

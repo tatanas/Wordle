@@ -1,5 +1,5 @@
 import os
-from main import compare, get_remaining_possible_answers
+from first_guess import compare, get_remaining_possible_answers
 # check every roate_XXXXX.txt file.
 # get the possible answers stemming from such comparison.
 # if the list has only one of those
