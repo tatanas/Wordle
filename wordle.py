@@ -40,7 +40,7 @@ def get_remaining_possible_answers(guess, comparison, answers_universe=ANSWERS):
         for i, (char, result) in enumerate(zip(guess, comparison)):
             if result == "2" and answer[i] != char:
                 valid = False; break
-            if result == "0" and (answer[i] == char or char in answer and not any(c == char and r != "0" for c, r in zip(guess, comparison))):
+            if result == "0" and (answer[i] == char or char in answer and not any(c == char and r != "0" for c, r in zip(guess, comparison))): 
                 valid = False; break
             if result == "1" and (char not in answer or answer[i] == char):
                 valid = False; break
@@ -48,49 +48,40 @@ def get_remaining_possible_answers(guess, comparison, answers_universe=ANSWERS):
             remaining.append(answer)
     return remaining
 
-
-def get_best_guess(remaining_answers):
+def get_best_guess(remaining_answers=ANSWERS, hard_mode=False, worst_case=True):
     """
     Finds the best possible guess within a group of selected answers.
-    To do this, it runs every comparison between possible guesses and the group of remaining answers.
-    For each guess, a comparisons dictionary is stored
-    where keys are ocurring comparisons and values are lists of guesses that produce such comparisons.
-    The value associated with each guess will be the comparison that is produced by the
-    greatest amount of guesses.
+    Returns both the guess itself and its score.
+    
+    Scores every guess and returns the guess with the lowest score. If a guess is also a possible answer and has only one possible answer remaining in the worst case scenario, then it must be the solution. Return it.
     """
 
-    values = {}
-    for guess in GUESSES:
-        comparisons = defaultdict(list)
-        for answer in remaining_answers:
-            comparison = compare(guess, answer)
-            comparisons[comparison].append(answer)
-        worst_case = max(len(comparison) for comparison in comparisons.values())
-        values[guess] = worst_case        
+    scores = {}
+    for guess in (GUESSES if not hard_mode else remaining_answers): 
+        score = score_guess(guess, remaining_answers, worst_case)
+        scores[guess] = score
 
     for answer in remaining_answers:
-        if values[answer] == 1:
-            return answer, values[answer]
+        if scores[answer] == 1:
+            return answer, scores[answer]
+
+    best_guess = min(scores, key=scores.get)
+    return best_guess, scores[best_guess]
+
+def score_guess(guess, remaining_answers=ANSWERS, worst_case=True):
+    """
+    Scores a guess by comparing it to all remaining possible answers and calculating how much it reduces its search space.
     
-    return min(values.items(), key=lambda kv: kv[1])
+    Create a dictionary that stores possible comparisons (like 02200) as keys and lists of answers that would yield such comparison as values.
+    If worst_case:
+    - Store the length of the worst case scenario as the value of the guess in the scores dictionary.
+    Else:
+    - Store the average length of all possible comparisons as the value of the guess in the scores dictionary.
+    """
 
-if __name__ == "__main__":
-    while True:
-        remaining_answers = ANSWERS
-        guess = get_best_guess(remaining_answers)[0]
-        for i in range(6):
-            comparison = input(f"[{i + 1}] Enter your output after playing {guess}: ")
-            if comparison == "": 
-                print() 
-                break
-
-            remaining_answers = get_remaining_possible_answers(guess, comparison, remaining_answers)
-            best_guess, value = get_best_guess(remaining_answers)
-            guess = best_guess
-        
-            print(f"Remaining answers: {len(remaining_answers)} {(remaining_answers if len(remaining_answers) <= 10 else "")}")
-            print(f"Your next best guess is {best_guess} ({value})")
-        
-            if len(remaining_answers) == 1:
-                print("You won!\n")
-                break   
+    comparisons = defaultdict(list)
+    for answer in remaining_answers:
+        comparison = compare(guess, answer)
+        comparisons[comparison].append(answer)
+    score = max(len(comparison) for comparison in comparisons.values()) if worst_case else sum(len(comparison) for comparison in comparisons.values()) / len(comparisons)
+    return score
