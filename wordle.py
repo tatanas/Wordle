@@ -26,6 +26,36 @@ def compare(guess, answer):
 
     return "".join(result)
 
+def score_guess(guess, remaining_answers=ANSWERS, worst_case=False):
+    """
+    Scores a guess by comparing it to all remaining possible answers and calculating how much it reduces its search space.
+    
+    Create a dictionary that stores possible comparisons (like 02200) as keys and lists of answers that would yield such comparison as values.
+    If worst_case:
+    - Store the length of the worst case scenario as the value of the guess in the scores dictionary.
+    Else:
+    - Store the average length of all possible comparisons as the value of the guess in the scores dictionary.
+    """
+
+    comparisons = defaultdict(list)
+    for answer in remaining_answers:
+        comparison = compare(guess, answer)
+        comparisons[comparison].append(answer)
+
+    if worst_case:
+        score = max(len(comparison) for comparison in comparisons.values())
+    else:
+        score = sum(len(comparison) for comparison in comparisons.values()) / len(comparisons)
+
+    return score
+
+def score_all_guesses(remaining_answers=ANSWERS, hard_mode=False, worst_case=False):
+    scores = {}
+    for guess in (GUESSES if not hard_mode else remaining_answers): 
+        score = score_guess(guess, remaining_answers, worst_case)
+        scores[guess] = score
+    return scores
+
 def get_remaining_possible_answers(guess, comparison, answers_universe=ANSWERS):
     """
     Finds possible answers given a guess and a comparison, within a group of possible answers.
@@ -48,7 +78,7 @@ def get_remaining_possible_answers(guess, comparison, answers_universe=ANSWERS):
             remaining.append(answer)
     return remaining
 
-def get_best_guess(remaining_answers=ANSWERS, hard_mode=False, worst_case=True):
+def get_best_guess(remaining_answers=ANSWERS, hard_mode=False, worst_case=False):
     """
     Finds the best possible guess within a group of selected answers.
     Returns both the guess itself and its score.
@@ -56,10 +86,7 @@ def get_best_guess(remaining_answers=ANSWERS, hard_mode=False, worst_case=True):
     Scores every guess and returns the guess with the lowest score. If a guess is also a possible answer and has only one possible answer remaining in the worst case scenario, then it must be the solution. Return it.
     """
 
-    scores = {}
-    for guess in (GUESSES if not hard_mode else remaining_answers): 
-        score = score_guess(guess, remaining_answers, worst_case)
-        scores[guess] = score
+    scores = score_all_guesses(remaining_answers, hard_mode, worst_case)
 
     for answer in remaining_answers:
         if scores[answer] == 1:
@@ -68,20 +95,3 @@ def get_best_guess(remaining_answers=ANSWERS, hard_mode=False, worst_case=True):
     best_guess = min(scores, key=scores.get)
     return best_guess, scores[best_guess]
 
-def score_guess(guess, remaining_answers=ANSWERS, worst_case=True):
-    """
-    Scores a guess by comparing it to all remaining possible answers and calculating how much it reduces its search space.
-    
-    Create a dictionary that stores possible comparisons (like 02200) as keys and lists of answers that would yield such comparison as values.
-    If worst_case:
-    - Store the length of the worst case scenario as the value of the guess in the scores dictionary.
-    Else:
-    - Store the average length of all possible comparisons as the value of the guess in the scores dictionary.
-    """
-
-    comparisons = defaultdict(list)
-    for answer in remaining_answers:
-        comparison = compare(guess, answer)
-        comparisons[comparison].append(answer)
-    score = max(len(comparison) for comparison in comparisons.values()) if worst_case else sum(len(comparison) for comparison in comparisons.values()) / len(comparisons)
-    return score
